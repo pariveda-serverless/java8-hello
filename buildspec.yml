@@ -32,13 +32,14 @@ phases:
       # TODO determine if you need secret management, and modify accordingly
       - aws configure set s3.signature_version s3v4
       - echo Secrets bucket is $(cat s3.txt)
-
+      - mvn install
       # TODO: If needed, add additional steps
       # EXAMPLE: npm lint, npm test, etc.
   build:
     commands:
+
       # Deploy Application
-      # - serverless deploy
+      - serverless deploy
 
   post_build:
     commands:
