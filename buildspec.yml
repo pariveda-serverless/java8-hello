@@ -4,11 +4,14 @@ phases:
   install:
     commands:
 
-      # Install additional npm modules
-      - npm install
+
 
       # Install jq
       - apt-get update && apt-get install -y jq
+      # Install additional npm modules
+      #- npm install
+      - apt-get install nodejs
+      - apt-get install npm
       # Install serverless
       - npm install -g serverless 2>&1 >/dev/null
 
