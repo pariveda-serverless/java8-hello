@@ -32,7 +32,7 @@ phases:
       # TODO determine if you need secret management, and modify accordingly
       - aws configure set s3.signature_version s3v4
       - echo Secrets bucket is $(cat s3.txt)
-      - mvn install
+      - mvn package
       # TODO: If needed, add additional steps
       # EXAMPLE: npm lint, npm test, etc.
   build:
@@ -45,7 +45,9 @@ phases:
     commands:
       # Remove S3 Bucket Name from Codebuild Memory
       - rm -rf s3.txt
-
+artifacts:
+  files:
+    - target/hello-dev.jar
       # Remove pipelines
       # USE WITH EXTREME CAUTION!
       #- sls remove
