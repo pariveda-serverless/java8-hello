@@ -10,7 +10,7 @@ custom:
 
 provider:
   name: aws
-  runtime: nodejs4.3
+  runtime: java8
   stage: ${opt:stage, env:STAGE}
   # NOTE: Codebuild passes the lambda role from the security stack to the serverless deploy command in the live CI/CD pipeline
   role: ${file(./rolearn.txt)}
@@ -18,6 +18,9 @@ provider:
   stackTags:
     Type: service
 
+
+package:
+  artifact: target/hello-dev.jar
 # NOTE: You can add packaging information here
 #package:
 #  include:
@@ -33,7 +36,7 @@ functions:
       SECRETS_BUCKET: ${file(./s3.txt)}
       SECURITY_COMMIT_HASH: ${self:custom.securityHash}
       APP_COMMIT_HASH: ${self:custom.appHash}
-    handler: index.hello
+    handler: com.serverless.Handler
     events:
       - http:
           path: hello/world
