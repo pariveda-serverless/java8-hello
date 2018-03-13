@@ -1,4 +1,4 @@
-version:  0.1
+version:  0.2
 
 phases:
   install:
@@ -9,6 +9,11 @@ phases:
 
       # Install jq
       - apt-get update && apt-get install -y jq
+      # Install serverless
+      - npm install -g serverless 2>&1 >/dev/null
+
+      # Install maven
+      - apt-get install -y maven
 
   pre_build:
     commands:
@@ -29,7 +34,7 @@ phases:
   build:
     commands:
       # Deploy Application
-      - serverless deploy
+      # - serverless deploy
 
   post_build:
     commands:
