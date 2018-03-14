@@ -1,9 +1,6 @@
 # NOTE: Service name must match the repository name, but replace all '.' with '-' (this is a restriction of Cloudformation naming conventions)
 service: java8-hello
 
-plugins:
-  - serverless-offline
-
 custom:
   securityHash: ${file(./securityhash.txt)}
   appHash: ${file(./apphash.txt)}

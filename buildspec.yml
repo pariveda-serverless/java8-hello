@@ -16,9 +16,6 @@ phases:
       # Install serverless
       - npm install -g serverless 2>&1 >/dev/null
 
-      # Install maven
-      - apt-get install -y maven
-
   pre_build:
     commands:
       # Get Configuration Information
@@ -32,7 +29,7 @@ phases:
       # TODO determine if you need secret management, and modify accordingly
       - aws configure set s3.signature_version s3v4
       - echo Secrets bucket is $(cat s3.txt)
-      - mvn package
+      - mvn install
       # TODO: If needed, add additional steps
       # EXAMPLE: npm lint, npm test, etc.
   build:
@@ -51,3 +48,7 @@ artifacts:
       # Remove pipelines
       # USE WITH EXTREME CAUTION!
       #- sls remove
+  discard-paths: yes
+cache:
+  paths:
+    - '/root/.m2/**/*'
